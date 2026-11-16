@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque - POO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>⋐ Cadastro de Produtos Dani e Joca ⋑</h1>
+
+        <div class="imagens-container">
+            <div class="imagem-container">
+                <img src="minha_foto.jpg" alt="Dani" class="imagem-perfil">
+            </div>
+
+            <div class="imagem-container">
+                <img src="joaquim.jpg" alt="Joca" class="imagem-perfil">
+            </div>
+        </div>
+
+        <!-- Formulário de cadastro -->
+        <form id="produto-form" novalidate>
+
+            <div class="form-group">
+                <label for="nome">Nome do produto:</label>
+                <input type="text" id="nome" placeholder="Ex. Notebook">
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço (R$):</label>
+                <input type="number" id="preco" step="0.01" min="0"
+                    placeholder="Ex. 3500.00">
+            </div>
+
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" min="0" step="1"
+                    placeholder="Ex. 5">
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Adicionar Produto
+            </button>
+
+        </form>
+
+        <!-- Mensagens Inline V5 -->
+        <div id="mensagem-erro" class="mensagem-inline"
+            role="alert" aria-live="assertive"></div>
+
+        <div id="mensagem-sucesso" class="mensagem-sucesso"
+            role="status" aria-live="polite"></div>
+
+        <!-- Busca de produtos -->
+        <div class="grupo-busca">
+            <label for="campo-busca">Buscar produto:</label>
+            <input type="text" id="campo-busca"
+                placeholder="Digite o nome do produto...">
+        </div>
+
+        <!-- Resumo do estoque -->
+        <div class="resumo-container">
+            <h3 id="total-estoque">Total em Estoque: R$ 0,00</h3>
+
+            <button type="button" id="limpar-tabela" class="btn-danger">
+                Limpar Tudo
+            </button>
+        </div>
+
+        <!-- Botão conceito Bootstrap V5 -->
+        <div class="bootstrap-container">
+            <button type="button" id="btn-bootstrap" class="btn-bootstrap">
+                Ver Conceito Bootstrap
+            </button>
+        </div>
+
+        <!-- Tabela de produtos -->
+        <table id="tabela-produtos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço Un.</th>
+                    <th>Qtd.</th>
+                    <th>Subtotal</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Produtos inseridos pelo JavaScript -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- MODAL PERSONALIZADO V5 -->
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+
+        <div class="modal-conteudo" role="dialog"
+            aria-modal="true" aria-labelledby="modal-titulo">
+
+            <h2 id="modal-titulo">Confirmação</h2>
+
+            <p id="modal-mensagem">
+                Deseja realmente continuar?
+            </p>
+
+            <div class="modal-botoes">
+
+                <button type="button" id="modal-cancelar"
+                    class="btn-cancelar">
+                    Cancelar
+                </button>
+
+                <button type="button" id="modal-confirmar"
+                    class="btn-confirmar">
+                    Confirmar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
