@@ -20,26 +20,48 @@ class Produto {
 //
 
 const listaDeProdutos = [];
+<<<<<<< HEAD
 let indiceEdicao = null;
 
 const CHAVE_STORAGE = "sistema_estoque_produtos";
 const LIMITE_ESTOQUE_CRITICO = 3;
+=======
+
+let indiceEdicao = null;
+
+const CHAVE_STORAGE = "sistema_estoque_produtos";
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 
 //
 // FASE 3: Elementos do DOM
 //
 
 const formProduto = document.getElementById("produto-form");
+<<<<<<< HEAD
 const btnLimparTudo = document.getElementById("limpar-tabela");
 const totalEstoqueEl = document.getElementById("total-estoque");
 const campoBusca = document.getElementById("campo-busca");
 const btnSubmit = document.querySelector(".btn-primary");
 
 const mensagemErro = document.getElementById("mensagem-erro");
+=======
+
+const btnLimparTudo = document.getElementById("limpar-tabela");
+
+const totalEstoqueEl = document.getElementById("total-estoque");
+
+const campoBusca = document.getElementById("campo-busca");
+
+const btnSubmit = document.querySelector(".btn-primary");
+
+const mensagemErro = document.getElementById("mensagem-erro");
+
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 const mensagemSucesso = document.getElementById("mensagem-sucesso");
 
 const btnBootstrap = document.getElementById("btn-bootstrap");
 
+<<<<<<< HEAD
 const campoOrdenacao = document.getElementById("ordenacao");
 const btnExportarCSV = document.getElementById("btn-exportar-csv");
 const btnBackupJSON = document.getElementById("btn-backup-json");
@@ -55,17 +77,40 @@ const modalConfirmar = document.getElementById("modal-confirmar");
 
 //
 // FASE 4: Mensagens
+=======
+// Elementos do Modal
+const modalOverlay = document.getElementById("modal-overlay");
+
+const modalTitulo = document.getElementById("modal-titulo");
+
+const modalMensagem = document.getElementById("modal-mensagem");
+
+const modalCancelar = document.getElementById("modal-cancelar");
+
+const modalConfirmar = document.getElementById("modal-confirmar");
+
+//
+// FASE 4: Mensagens Inline V5
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 //
 
 function exibirErro(mensagem) {
     mensagemErro.textContent = mensagem;
     mensagemErro.style.display = "block";
+<<<<<<< HEAD
+=======
+
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
     mensagemSucesso.style.display = "none";
 }
 
 function exibirSucesso(mensagem) {
     mensagemSucesso.textContent = mensagem;
     mensagemSucesso.style.display = "block";
+<<<<<<< HEAD
+=======
+
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
     mensagemErro.style.display = "none";
 }
 
@@ -78,7 +123,11 @@ function limparMensagens() {
 }
 
 //
+<<<<<<< HEAD
 // FASE 5: Modal de Confirmação
+=======
+// FASE 5: Modal de Confirmação V5
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 //
 
 function abrirModal(titulo, mensagem, mostrarConfirmar = true) {
@@ -97,7 +146,11 @@ function abrirModal(titulo, mensagem, mostrarConfirmar = true) {
         modalOverlay.classList.add("ativo");
         modalOverlay.setAttribute("aria-hidden", "false");
 
+<<<<<<< HEAD
         (mostrarConfirmar ? modalConfirmar : modalCancelar).focus();
+=======
+        modalConfirmar.focus();
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 
         function finalizar(resultado) {
 
@@ -160,6 +213,7 @@ btnBootstrap.addEventListener("click", async function () {
 
 function salvarNoLocalStorage() {
 
+<<<<<<< HEAD
     try {
         const listaEmTexto = JSON.stringify(listaDeProdutos);
 
@@ -173,10 +227,16 @@ function salvarNoLocalStorage() {
 
         return false;
     }
+=======
+    const listaEmTexto = JSON.stringify(listaDeProdutos);
+
+    localStorage.setItem(CHAVE_STORAGE, listaEmTexto);
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 }
 
 function carregarDoLocalStorage() {
 
+<<<<<<< HEAD
     try {
 
         const dadosSalvos = localStorage.getItem(CHAVE_STORAGE);
@@ -227,6 +287,38 @@ function carregarDoLocalStorage() {
         exibirErro(
             "Não foi possível carregar os produtos salvos."
         );
+=======
+    const dadosSalvos = localStorage.getItem(CHAVE_STORAGE);
+
+    if (dadosSalvos) {
+
+        try {
+
+            const produtosObjetos = JSON.parse(dadosSalvos);
+
+            if (!Array.isArray(produtosObjetos)) {
+                throw new Error("Formato de dados inválido.");
+            }
+
+            produtosObjetos.forEach((prod) => {
+
+                const produtoInstanciado = new Produto(
+                    prod.nome,
+                    prod.preco,
+                    prod.quantidade
+                );
+
+                listaDeProdutos.push(produtoInstanciado);
+
+            });
+
+        } catch (erro) {
+
+            exibirErro("Não foi possível carregar os produtos salvos.");
+
+            listaDeProdutos.length = 0;
+        }
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
     }
 }
 
@@ -240,6 +332,7 @@ formProduto.addEventListener("submit", function (event) {
 
     limparMensagens();
 
+<<<<<<< HEAD
     const nomeInput =
         document.getElementById("nome").value.trim();
 
@@ -249,12 +342,25 @@ formProduto.addEventListener("submit", function (event) {
     const quantidadeInput =
         document.getElementById("quantidade").value;
 
+=======
+    const nomeInput = document.getElementById("nome").value.trim();
+
+    const precoInput = document.getElementById("preco").value;
+
+    const quantidadeInput = document.getElementById("quantidade").value;
+
+    // Validação dos campos
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
     if (
         nomeInput === "" ||
         precoInput === "" ||
         quantidadeInput === "" ||
         !Number.isFinite(Number(precoInput)) ||
+<<<<<<< HEAD
         !Number.isSafeInteger(Number(quantidadeInput)) ||
+=======
+        !Number.isInteger(Number(quantidadeInput)) ||
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
         Number(precoInput) < 0 ||
         Number(quantidadeInput) < 0
     ) {
@@ -290,7 +396,10 @@ formProduto.addEventListener("submit", function (event) {
     atualizarInterface();
 
     formProduto.reset();
+<<<<<<< HEAD
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 });
 
 //
@@ -329,10 +438,14 @@ btnLimparTudo.addEventListener("click", async function () {
 
     atualizarInterface();
 
+<<<<<<< HEAD
     exibirSucesso(
         "Todos os produtos foram removidos com sucesso!"
     );
 
+=======
+    exibirSucesso("Todos os produtos foram removidos com sucesso!");
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 });
 
 //
@@ -346,19 +459,30 @@ campoBusca.addEventListener("input", function () {
 });
 
 //
+<<<<<<< HEAD
 // FASE 11: Obter produtos filtrados e ordenados
+=======
+// FASE 11: Obter produtos filtrados
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 //
 
 function obterProdutosFiltrados() {
 
+<<<<<<< HEAD
     const termoBusca =
         campoBusca.value.toLowerCase().trim();
 
     const produtosFiltrados = listaDeProdutos.filter((produto) => {
+=======
+    const termoBusca = campoBusca.value.toLowerCase().trim();
+
+    return listaDeProdutos.filter((produto) => {
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 
         return produto.nome.toLowerCase().includes(termoBusca);
 
     });
+<<<<<<< HEAD
 
     const produtosOrdenados = [...produtosFiltrados];
 
@@ -412,6 +536,8 @@ function obterProdutosFiltrados() {
     }
 
     return produtosOrdenados;
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 }
 
 //
@@ -424,16 +550,23 @@ function prepararEdicao(indexReal) {
 
     const produto = listaDeProdutos[indexReal];
 
+<<<<<<< HEAD
     if (!produto) {
         return;
     }
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
     document.getElementById("nome").value = produto.nome;
 
     document.getElementById("preco").value = produto.preco;
 
+<<<<<<< HEAD
     document.getElementById("quantidade").value =
         produto.quantidade;
+=======
+    document.getElementById("quantidade").value = produto.quantidade;
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 
     indiceEdicao = indexReal;
 
@@ -443,7 +576,10 @@ function prepararEdicao(indexReal) {
         behavior: "smooth",
         block: "center"
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 }
 
 //
@@ -455,11 +591,18 @@ function sairDoModoEdicao() {
     indiceEdicao = null;
 
     btnSubmit.textContent = "Adicionar Produto";
+<<<<<<< HEAD
 
 }
 
 //
 // FASE 14: Remover produto
+=======
+}
+
+//
+// FASE 14: Remover produto com Modal
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 //
 
 async function removerProduto(indexReal) {
@@ -483,6 +626,10 @@ async function removerProduto(indexReal) {
 
     salvarNoLocalStorage();
 
+<<<<<<< HEAD
+=======
+    // Ajusta o índice caso exista uma edição em andamento
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
     if (indiceEdicao !== null) {
 
         if (indiceEdicao === indexReal) {
@@ -494,14 +641,20 @@ async function removerProduto(indexReal) {
         } else if (indiceEdicao > indexReal) {
 
             indiceEdicao--;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
         }
     }
 
     atualizarInterface();
 
     exibirSucesso("Produto removido com sucesso!");
+<<<<<<< HEAD
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 }
 
 //
@@ -510,6 +663,7 @@ async function removerProduto(indexReal) {
 
 function atualizarTotalEstoque(produtosVisiveis) {
 
+<<<<<<< HEAD
     const total = produtosVisiveis.reduce(
         (acc, produto) => {
             return acc + produto.calcularSubtotal();
@@ -520,6 +674,16 @@ function atualizarTotalEstoque(produtosVisiveis) {
     totalEstoqueEl.textContent =
         `Total em Estoque: R$ ${total.toFixed(2).replace(".", ",")}`;
 
+=======
+    const total = produtosVisiveis.reduce((acc, produto) => {
+
+        return acc + produto.calcularSubtotal();
+
+    }, 0);
+
+    totalEstoqueEl.textContent =
+        `Total em Estoque: R$ ${total.toFixed(2).replace(".", ",")}`;
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 }
 
 //
@@ -528,8 +692,12 @@ function atualizarTotalEstoque(produtosVisiveis) {
 
 function renderizarTabela(produtosFiltrados) {
 
+<<<<<<< HEAD
     const tabelaBody =
         document.querySelector("#tabela-produtos tbody");
+=======
+    const tabelaBody = document.querySelector("#tabela-produtos tbody");
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 
     tabelaBody.innerHTML = "";
 
@@ -556,6 +724,7 @@ function renderizarTabela(produtosFiltrados) {
 
         const linha = document.createElement("tr");
 
+<<<<<<< HEAD
         // Estoque crítico: 3 unidades ou menos.
         if (
             Number(produto.quantidade) <= LIMITE_ESTOQUE_CRITICO
@@ -566,6 +735,8 @@ function renderizarTabela(produtosFiltrados) {
             linha.title = "Atenção: estoque crítico";
         }
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
         // Nome
         const colunaNome = document.createElement("td");
 
@@ -636,7 +807,10 @@ function renderizarTabela(produtosFiltrados) {
         tabelaBody.appendChild(linha);
 
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 }
 
 //
@@ -650,6 +824,7 @@ function atualizarInterface() {
     renderizarTabela(produtosFiltrados);
 
     atualizarTotalEstoque(produtosFiltrados);
+<<<<<<< HEAD
 
 }
 
@@ -941,6 +1116,12 @@ if (btnImportarJSON && arquivoJSON) {
 
 //
 // FASE 23: Inicialização
+=======
+}
+
+//
+// FASE 18: Inicialização
+>>>>>>> d73593ada0c1bcd7fcef2bd42a8c8161f47382e6
 //
 
 carregarDoLocalStorage();
